@@ -36,17 +36,20 @@ function ServiceForm() {
         technician: service.technician,
         reason: service.reason
     }
-
-    await fetch("http://localhost:8080/api/services/", {
-    method: "POST",
-    body: JSON.stringify(data),
-    headers:{"Content-Type": "application/json"},
-  })
-
-  .then(() => {
+  try {
+    const response = await fetch("http://localhost:8080/api/services/", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers:{"Content-Type": "application/json"},
+    });
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
     setService({...service})
     window.location.href='/services/'
-  })
+  } catch (error) {
+    console.error(error);
+  }
 }
 
   const handleInputChange = async (e) => {

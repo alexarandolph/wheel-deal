@@ -13,22 +13,25 @@ function TechForm() {
         employee_number: technician.employee_number
     }
 
-    await fetch("http://localhost:8080/api/technicians/", {
-    method: "POST",
-    body: JSON.stringify(data),
-    headers:{"Content-Type": "application/json"},
-  })
-
-  .then(() => {
-    setTechnician({...technician})
-    window.location.href='/technicians/'
-  })
-}
-
-  const handleInputChange = async (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
-    setTechnician({ ...technician, [name]: value });
+    try {
+      const response = await fetch("http://localhost:8080/api/technicians/", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers:{"Content-Type": "application/json"},
+      });
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
+      setTechnician({...technician})
+      window.location.href='/technicians/'
+    } catch (error) {
+      console.error(error);
+    }
+    }
+    const handleInputChange = async (e) => {
+      const name = e.target.name;
+      const value = e.target.value;
+      setTechnician({ ...technician, [name]: value });
   }
 
   return (
