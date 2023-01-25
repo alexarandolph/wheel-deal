@@ -113,8 +113,16 @@ function ServiceForm() {
               </select>
             </div>
             </div>
+            <div className="row">
+                  <div className="col">
+                    <div className="form-floating mb-3">
+                      <input onChange={handleInputChange} value={service.reason} required placeholder="reason" type="text" id="reason" name="reason" className="form-control" />
+                      <label htmlFor="reason">Reason for service</label>
+                    </div>
+                  </div>
             </div>
                 <button className="btn btn-lg btn-primary">Submit</button>
+                </div>
               </form>
             </div>
           </div>

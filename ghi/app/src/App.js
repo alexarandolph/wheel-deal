@@ -3,6 +3,7 @@ import MainPage from './MainPage';
 import Nav from './Nav';
 import TechForm from './TechForm';
 import ServiceForm from './ServiceForm';
+import ServiceList from './ServiceList';
 
 function App() {
   return (
@@ -11,8 +12,9 @@ function App() {
       <div className="container">
         <Routes>
           <Route path="/" element={<MainPage />} />
-           <Route path='/technicians/new/' element={<TechForm />} />
-           <Route path='/services/new/' element={<ServiceForm />} />
+          <Route path='/services/' element={<ServiceList />} />
+          <Route path='/services/new/' element={<ServiceForm />} />
+          <Route path='/technicians/new/' element={<TechForm />} />
         </Routes>
       </div>
     </BrowserRouter>
