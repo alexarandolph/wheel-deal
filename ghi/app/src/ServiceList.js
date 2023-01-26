@@ -9,9 +9,7 @@ function ServiceList() {
 
             if (response.ok) {
             const data = await response.json();
-            console.log(data)
             setServices(data.services)
-            console.log(data.services)
             }
         }
         catch (e) {
@@ -56,7 +54,7 @@ return (
             <tr key={ service.id }>
               <td>{ service.vin }</td>
               <td>{ service.customer_name }</td>
-              <td> { service.vip }</td>
+              <td> { service.vip.toString() }</td>
               <td>{ service.service_date }</td>
               <td>{ service.service_time }</td>
               <td>{ service.technician.name }</td>
