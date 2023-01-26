@@ -46,7 +46,7 @@ function ServiceHistory() {
               <td>{service.vin}</td>
               <td>{service.customer_name}</td>
               <td>{service.service_date}</td>
-              <td>{service.service_time}</td>
+              <td>{service.service_time.slice(0,5)}</td>
               <td>{service.technician.name}</td>
               <td>{service.reason}</td>
             </tr>

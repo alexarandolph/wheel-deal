@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 
-
 function ServiceList() {
     const [services, setServices] = useState([])
 
@@ -10,7 +9,7 @@ function ServiceList() {
 
             if (response.ok) {
             const data = await response.json();
-            setServices(data.services)
+            setServices(data.services.filter(service => service.status !== true))
             }
         }
         catch (e) {
@@ -59,7 +58,7 @@ return (
               <td>{ service.customer_name }</td>
               <td> { service.vip.toString() }</td>
               <td>{ service.service_date }</td>
-              <td>{ service.service_time }</td>
+              <td>{ service.service_time.slice(0,5) }</td>
               <td>{ service.technician.name }</td>
               <td>{ service.reason }</td>
               <td>
