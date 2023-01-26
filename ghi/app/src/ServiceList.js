@@ -53,7 +53,7 @@ return (
       <tbody>
         {services?.map(service => {
           return (
-            <tr key={ service.href }>
+            <tr key={ service.id }>
               <td>{ service.vin }</td>
               <td>{ service.customer_name }</td>
               <td> { service.vip }</td>
@@ -62,8 +62,8 @@ return (
               <td>{ service.technician.name }</td>
               <td>{ service.reason }</td>
               <td>
-                <button onClick={()=>handleCancel(service.href)} className="btn btn-outline-danger" type="button">Cancel</button>
-                <button onClick={()=>handleFinish(service.href)} className="btn btn-outline-success" type="button">Finished</button>
+                <button onClick={()=>handleCancel(service.id)} className="btn btn-outline-danger" type="button">Cancel</button>
+                <button onClick={()=>handleFinish(service.id)} className="btn btn-outline-success" type="button">Finished</button>
               </td>
             </tr>
           );
