@@ -32,3 +32,6 @@ class Service(models.Model):
 
     def get_api_url(self):
         return reverse("api_service", kwargs={"pk": self.pk})
+
+    class Meta:
+        ordering = ['service_date', 'service_time']

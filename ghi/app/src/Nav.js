@@ -30,6 +30,21 @@ function Nav() {
               Service History
             </NavLink>
           </li>
+          <li className="nav-item">
+            <NavLink className="nav-link" aria-current="page" to="/manufacturers/">
+              Manufacturers
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink className="nav-link" aria-current="page" to="/manufacturers/new/">
+              Create a manufacturer
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink className="nav-link" aria-current="page" to="/vehicles/">
+              Vehicle models
+            </NavLink>
+          </li>
           </ul>
         </div>
       </div>

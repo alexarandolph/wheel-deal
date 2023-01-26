@@ -12,7 +12,6 @@ function ServiceHistory() {
       const response = await fetch("http://localhost:8080/api/services/")
       const content = await response.json()
       const serviceList = content.services
-      console.log(content.services)
       const searchResult = serviceList.filter((service) => service.vin.includes(searchService))
       setService(searchResult)
     }
@@ -20,25 +19,16 @@ function ServiceHistory() {
         filteredService();
       }, []);
 
-
-  // const handleSubmit = async (event) => {
-  //   event.preventDefault();
-  //     if (vin) {
-  //       const searchService = services.filter((service) =>
-  //       service.vin === vin)
-  //       setSearchService(searchService);
-  //     } else {
-  //     setSearchService(services)
-  //   }
-  // };
-
   return (
     <div>
+      <br></br>
       <div className="input-group">
-            <input type="text" value={searchService} onChange={handleInputChange} className="form-control rounded" placeholder="Search Service" aria-label="Search" aria-describedby="search-addon" />
+            <input type="text" value={searchService} onChange={handleInputChange} className="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
             <button type="button" onClick={filteredService} className="btn btn-outline-secondary">Search VIN</button>
             </div>
+      <br></br>
       <h1>Service Appointments</h1>
+      <br></br>
       <table className='table table-striped'>
         <thead>
           <tr>
@@ -68,53 +58,3 @@ function ServiceHistory() {
 }
 
 export default ServiceHistory;
-
-
-
-
-// const App = () => {
-//   const [filterValue, setFilterValue] = useState(" ");
-//   const [filterKey, setFilterKey] = useState("name");
-
-
-//   const handleChange = (e) => {
-//     setFilterValue(e.target.value);
-//   };
-
-//   const handleKeyChange = (e) => {
-//     setFilterKey(e.target.value);
-//   };
-
-//   const filteredPeople = () => {
-//     if (filterValue === " ") {
-//       return people;
-//     } else {
-//       return people.filter((person) =>
-//         person[filterKey].toLowerCase().includes(filterValue)
-//       );
-//     }
-//   };
-
-//   return (
-//     <>
-//       <h1>People</h1>
-//       <select onChange={handleKeyChange}>
-//         <option>name</option>
-//         <option>city</option>
-//         <option>email</option>
-//       </select>
-
-//       <input onChange={handleChange} placeholder="Filter For Name" />
-
-//       <div>
-//         {filteredPeople().map((person) => (
-//           <div key={person.email}>
-//             {person.name} - {person.email} - {person.city}
-//           </div>
-//         ))}
-//       </div>
-//     </>
-//   );
-// };
-
-// export default App;

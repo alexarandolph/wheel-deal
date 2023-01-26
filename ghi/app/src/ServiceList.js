@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
+
 function ServiceList() {
     const [services, setServices] = useState([])
 
@@ -34,8 +35,10 @@ function ServiceList() {
         });
         setServices(services.filter((a) => a.id !== id));};
 
+
 return (
 <div className="container-fluid">
+  <br></br>
     <table className="table table-striped">
       <thead>
         <tr>
