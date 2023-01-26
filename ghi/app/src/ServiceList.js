@@ -22,19 +22,19 @@ function ServiceList() {
             getData();
           }, []);
 
-    const handleCancel = async (href) => {
-     await fetch( `http://localhost:8080/api/services/${href}/`,
+    const handleCancel = async (id) => {
+     await fetch( `http://localhost:8080/api/services/${id}/`,
         { method: "DELETE" });
-        setServices(services.filter((a) => a.href !== href));};
+        setServices(services.filter((a) => a.id !== id));};
 
-    const handleFinish = async (href) => {
-     await fetch(`http://localhost:8080/api/services/${href}/`,
+    const handleFinish = async (id) => {
+     await fetch(`http://localhost:8080/api/services/${id}/`,
         {
         method: "PUT",
         body: JSON.stringify({status: true}),
         headers: { "Content-Type": "application/json" },
         });
-        setServices(services.filter((a) => a.href !== href));};
+        setServices(services.filter((a) => a.id !== id));};
 
 return (
 <div className="container-fluid">
