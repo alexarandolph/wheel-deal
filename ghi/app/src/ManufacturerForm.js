@@ -41,7 +41,7 @@ function ManufacturerForm() {
             <div className="card-body">
 
               <form className='form' onSubmit={handleSubmit} id="create-attendee-form">
-                <h1 className="card-title"> Add a new manufacturer</h1>
+                <h1 className="card-title"> Create a manufacturer</h1>
                 <p className="mb-3">
                 </p>
                 <div className="row">

@@ -36,7 +36,7 @@ function VehicleList() {
               <td>{ vehicle.name }</td>
               <td>{ vehicle.manufacturer.name }</td>
               <td>
-                <img src={ vehicle.picture_url } alt="" height="130px" width="175px"/>
+                <img src={ vehicle.picture_url } alt="" height="150px" width="250px"/>
               </td>
             </tr>
           );
