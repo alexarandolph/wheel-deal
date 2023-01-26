@@ -23,7 +23,7 @@ function TechForm() {
         throw new Error(response.statusText);
       }
       setTechnician({...technician})
-      window.location.href='/technicians/'
+      window.location.reload()
     } catch (error) {
       console.error(error);
     }

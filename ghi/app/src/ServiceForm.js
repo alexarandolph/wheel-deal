@@ -46,7 +46,7 @@ function ServiceForm() {
       throw new Error(response.statusText);
     }
     setService({...service})
-    window.location.href='/services/'
+    window.location.reload()
   } catch (error) {
     console.error(error);
   }

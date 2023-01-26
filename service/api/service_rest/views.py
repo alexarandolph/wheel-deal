@@ -59,8 +59,8 @@ def list_services(request, automobile_vo_id=None):
             services = Service.objects.filter(vin=automobile_vo_id)
         else:
             services = Service.objects.all()
-            data = serializers.serialize('json', services)
-        return HttpResponse(data, content_type='application/json')
+            # data = serializers.serialize('json', services)
+        return JsonResponse({"services": services}, encoder=ServiceListEncoder, safe=False)
 
     else:
         content = json.loads(request.body)

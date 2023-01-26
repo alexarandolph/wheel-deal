@@ -2,44 +2,48 @@ import React, { useState, useEffect } from 'react';
 
 function ServiceList() {
     const [services, setServices] = useState([])
-    useEffect(() => {
+
     const getData = async () => {
         try {
             const response = await fetch('http://localhost:8080/api/services/');
 
             if (response.ok) {
             const data = await response.json();
+            console.log(data)
             setServices(data.services)
+            console.log(data.services)
             }
         }
         catch (e) {
             console.log("error", e);
           }
         };
+        useEffect(() => {
             getData();
           }, []);
 
-    const handleCancel = async (id) => {
-    const res = await fetch( `http://localhost:8080/api/services/${id}`,
+    const handleCancel = async (href) => {
+     await fetch( `http://localhost:8080/api/services/${href}/`,
         { method: "DELETE" });
-        setServices(services.filter((a) => a.id !== id));};
+        setServices(services.filter((a) => a.href !== href));};
 
-    const handleFinish = async (id) => {
-    const res = await fetch(`http://localhost:8080/api/services/${id}`,
+    const handleFinish = async (href) => {
+     await fetch(`http://localhost:8080/api/services/${href}/`,
         {
         method: "PUT",
-        body: JSON.stringify({ status: true }),
+        body: JSON.stringify({status: true}),
         headers: { "Content-Type": "application/json" },
         });
-        setServices(services.filter((a) => a.id !== id));};
+        setServices(services.filter((a) => a.href !== href));};
 
 return (
-<div className="container">
+<div className="container-fluid">
     <table className="table table-striped">
       <thead>
         <tr>
           <th>VIN</th>
           <th>Customer name</th>
+          <th>VIP</th>
           <th>Date</th>
           <th>Time</th>
           <th>Technician</th>
@@ -49,16 +53,17 @@ return (
       <tbody>
         {services?.map(service => {
           return (
-            <tr key={service.id}>
+            <tr key={ service.href }>
               <td>{ service.vin }</td>
               <td>{ service.customer_name }</td>
+              <td> { service.vip }</td>
               <td>{ service.service_date }</td>
               <td>{ service.service_time }</td>
-              <td>{ service.technician }</td>
+              <td>{ service.technician.name }</td>
               <td>{ service.reason }</td>
               <td>
-                <button onClick={()=>handleCancel(service.id)} className="btn btn-primary" type="button">Cancel</button>
-                <button onClick={()=>handleFinish(service.id)} className="btn btn-primary" type="button">Finished</button>
+                <button onClick={()=>handleCancel(service.href)} className="btn btn-outline-danger" type="button">Cancel</button>
+                <button onClick={()=>handleFinish(service.href)} className="btn btn-outline-success" type="button">Finished</button>
               </td>
             </tr>
           );
