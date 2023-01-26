@@ -25,6 +25,11 @@ function Nav() {
               Appointments List
             </NavLink>
           </li>
+          <li className="nav-item">
+            <NavLink className="nav-link" aria-current="page" to="/services/search/">
+              Service History
+            </NavLink>
+          </li>
           </ul>
         </div>
       </div>

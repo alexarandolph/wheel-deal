@@ -4,6 +4,7 @@ import Nav from './Nav';
 import TechForm from './TechForm';
 import ServiceForm from './ServiceForm';
 import ServiceList from './ServiceList';
+import ServiceHistory from './ServiceHistory.js';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/" element={<MainPage />} />
           <Route path='/services/' element={<ServiceList />} />
           <Route path='/services/new/' element={<ServiceForm />} />
+          <Route path='/services/search/' element={<ServiceHistory />} />
           <Route path='/technicians/new/' element={<TechForm />} />
         </Routes>
       </div>

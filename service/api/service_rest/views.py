@@ -1,56 +1,8 @@
-from django.core import serializers
-from django.shortcuts import render
-from django.http import JsonResponse, HttpResponse
+from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
 from .models import AutomobileVO, Technician, Service
 import json
-from common.json import ModelEncoder, DateEncoder
-from datetime import datetime, date, time
-
-
-class TechnicianEncoder(ModelEncoder):
-    model = Technician
-    properties = ["name", "employee_number", "id"]
-
-class AutomobileVOEncoder(ModelEncoder):
-    model = AutomobileVO
-    properties = ["import_href", "vin", "id"]
-
-
-class ServiceListEncoder(ModelEncoder):
-    model = Service
-    properties = [
-        "vin",
-        "customer_name",
-        "service_date",
-        "service_time",
-        "reason",
-        "vip",
-        "status",
-        "technician",
-        "id"
-    ]
-    encoders = {
-        "technician": TechnicianEncoder()
-    }
-
-class ServiceDetailEncoder(ModelEncoder):
-    model = Service
-    properties = [
-        "vin",
-        "customer_name",
-        "service_date",
-        "service_time",
-        "reason",
-        "vip",
-        "status",
-        "technician",
-    ]
-    encoders = {
-        "technician": TechnicianEncoder()
-    }
-
-
+from service_rest.encoders import ServiceDetailEncoder, ServiceListEncoder, TechnicianEncoder, AutomobileVOEncoder
 
 @require_http_methods(["GET", "POST"])
 def list_services(request, automobile_vo_id=None):
