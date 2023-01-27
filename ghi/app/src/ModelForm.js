@@ -5,7 +5,7 @@ function ModelForm() {
     const [formData, setFormData] = useState({
         name: '',
         picture_url: '',
-        manufacturer: '',
+        manufacturer_id: '',
     })
 
     const getData = async () => {
@@ -41,7 +41,7 @@ function ModelForm() {
             setFormData({
                 name: '',
                 picture_url: '',
-                manufacturer: '',
+                manufacturer_id: '',
             });
         }
     }
@@ -67,11 +67,11 @@ function ModelForm() {
                             <label htmlFor="picture_url">Picture URL</label>
                         </div>
                         <div className="mb-3">
-                            <select onChange={handleFormChange} value={formData.manufacturer} required name="manufacturer" className="form-select">
+                            <select onChange={handleFormChange} value={formData.manufacturer_id} required name="manufacturer_id" className="form-select">
                                 <option value="">Choose a manufacturer</option>
                                 {manufacturers.map(manufacturer => {
                                     return (
-                                        <option key={manufacturer.id}>{ manufacturer.name }</option>
+                                        <option key={manufacturer.id} value={manufacturer.id}>{ manufacturer.name }</option>
                                     )
                                 })}
                             </select>
