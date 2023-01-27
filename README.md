@@ -13,5 +13,4 @@ The service microservice handles creating a technician, scheduling/viewing servi
 
 ## Sales microservice
 
-Explain your models and integration with the inventory
-microservice, here.
+With the sales microservice I created a Sale, Customer, and Employee Model. Using those you are able to create a sale record and list of all sales and the ability to create a customer. With the Employee part you are able to create a sales person(employee) and display a list of the history of sales that each sales person has made. With my poller I was able to get the VIN number for each automobile to be able to tie that to the sale record and each sales person's sales history. I created an AutomobileVO to be able to pull the VIN numbers from the inventory microservice.

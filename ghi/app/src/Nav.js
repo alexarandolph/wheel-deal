@@ -47,7 +47,7 @@ function Nav() {
                 </div>
             </li>
             <li className="nav-item dropdown">
-                <NavLink className="nav-link dropdown-toggle" to="/modles" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Models</NavLink>
+                <NavLink className="nav-link dropdown-toggle" to="/models" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Models</NavLink>
                   <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                     <NavLink className="dropdown-item" aria-current="page" to="/vehicles/">
                       Vehicle models
