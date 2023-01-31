@@ -9,19 +9,16 @@ Team:
 This application is perfect for dealerships seeking to centralize and streamline their information. With the Sales microservice, you can add sales representatives and customers, allowing you to easily track the vehicles each rep has sold and the vehicles each customer has purchased. The Services microservice allows you to add technicians and schedule appointments for vehicle service. You can view, complete, or cancel appointments, and the microservice also flags VIP customers based on their vehicle identification number (VIN). The Inventory microservice enables you to add manufacturers, create vehicle models, and view a comprehensive list of the dealership's inventory.
 
 ## Initialization
-Run the following commands in your terminal after you have cloned the project from the main branch:
+To run the project that you cloned from the main branch, perform the following steps in your terminal:
 
+Create a new data volume: Run the command `docker volume create beta-data`. This will build a volume that the containers can use to store and access data.
 
-`docker volume create beta-data` (Builds a new volume that the containers can consume and store data in)
+Build the images: Run the command `docker compose build`. This will build the images specified in the docker-compose.yml file.
 
+Start the services: Run the command `docker compose up`. This will start or restart all the services defined in the docker-compose.yml file.
 
-`docker compose build` (Builds images as per the docker-compose.yml file)
+Access the home page: Open your browser and navigate to http://localhost:3000 to view the home page of the project.
 
-
-`docker compose up` (Starts or restarts all services defined in the docker-compose.yml)
-
-
-Open browser to http://localhost:3000 to view the home page.
 
 ## Design
 The Wheel Deal application is a comprehensive and highly organized platform that leverages the power of microservices to optimize its performance. The platform is comprised of three interrelated microservices that work together to deliver a seamless and efficient user experience.
