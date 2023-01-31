@@ -15,9 +15,9 @@ function ServiceHistory() {
       const searchResult = serviceList.filter((service) => service.vin.includes(searchService))
       setService(searchResult)
     }
-      useEffect(() => {
-        filteredService();
-      }, []);
+  useEffect(() => {
+    filteredService();
+  }, []);
 
   return (
     <div>
