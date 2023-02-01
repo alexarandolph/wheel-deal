@@ -1,5 +1,7 @@
 from django.db import models
 from django.urls import reverse
+# import sys
+# sys.path.append("inventory/api/inventory_rest/models")
 from inventory.api.inventory_rest.models import Automobile
 
 class Customer(models.Model):
@@ -19,7 +21,10 @@ class Customer(models.Model):
 class SaleVO(models.Model):
     sale_price= models.PositiveIntegerField()
     import_href = models.CharField(max_length=200, unique=True, null=True)
-    automobile = models.ForeignKey(Automobile, on_delete=models.CASCADE)
+    automobile = models.ForeignKey(
+        Automobile,
+        related_name="automobiles",
+        on_delete=models.CASCADE)
 
 class ServiceVO(models.Model):
     vin = models.CharField(max_length=50)

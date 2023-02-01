@@ -2,7 +2,7 @@ from common.json import ModelEncoder
 
 from .models import Customer, SaleVO, ServiceVO
 
-class SaleVOsListEncoder(ModelEncoder):
+class SaleVOEncoder(ModelEncoder):
     model = SaleVO
     properties = [
         "import_href",
@@ -10,7 +10,7 @@ class SaleVOsListEncoder(ModelEncoder):
         "sale_price"
     ]
 
-class ServiceVOsListEncoder(ModelEncoder):
+class ServiceVOEncoder(ModelEncoder):
     model = ServiceVO
     properties = [
         "vin",

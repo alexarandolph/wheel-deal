@@ -25,14 +25,19 @@ SECRET_KEY = 'django-insecure-izg-$sj558wj2)c4a5q0o+c@=a@*rrvweov!ce+1c1lml__qjf
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "localhost",
+    "inventory-api",
+    "sales-api",
+    "service-api",
+]
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    "inventory.api.inventory_rest.apps.InventoryRestConfig",
     'customer_rest.apps.CustomerRestConfig',
-    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
