@@ -10,7 +10,7 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "customer_project.settings")
 django.setup()
 
 # Import models from service_rest, here.
-from customer_rest.models import
+from customer_rest.models import Customer
 # from service_rest.models import Something
 from customer_rest.models import SaleVO, ServiceVO
 
