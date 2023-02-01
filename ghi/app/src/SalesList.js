@@ -35,7 +35,7 @@ function SalesList() {
                             <td>{ sale.employee.employee_number }</td>
                             <td>{ sale.customer.customer_name }</td>
                             <td>{ sale.automobile.vin }</td>
-                            <td>{ sale.sale_price }</td>
+                            <td> ${ sale.sale_price }</td>
                         </tr>
                     );
                 })}

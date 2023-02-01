@@ -54,19 +54,19 @@ function Nav() {
                     Manufacturers
                   </NavLink>
                   <NavLink className="dropdown-item" aria-current="page" to="/manufacturers/new/">
-                    Create a manufacturer
+                    Create a Manufacturer
                   </NavLink>
                   <NavLink className="dropdown-item" aria-current="page" to="/vehicles/">
-                      Vehicle models
+                      Vehicle Models
                     </NavLink>
                     <NavLink className="dropdown-item" aria-current="page" to="/models">
-                      Create a model
+                      Create a Model
                     </NavLink>
                     <NavLink className="dropdown-item" aria-current="page" to="/automobiles">
                       Automobile List
                     </NavLink>
                     <NavLink className="dropdown-item" aria-current="page" to="/createautomobile">
-                      Create an automobile
+                      Create an Automobile
                     </NavLink>
                 </div>
             </li>
