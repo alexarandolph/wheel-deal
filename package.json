@@ -1,5 +1,9 @@
 {
   "dependencies": {
-    "moment": "^2.29.4"
+    "@types/react-router-dom": "^5.3.3",
+    "bootstrap": "^5.2.3",
+    "moment": "^2.29.4",
+    "react-bootstrap": "^2.7.0",
+    "react-bootstrap-validation": "^0.1.11"
   }
 }
