@@ -4,14 +4,14 @@ import React, {useState} from 'react';
 type FormData = {
   customer_name: string;
   address: string;
-  phone_number: number;
+  phone_number: string;
 }
 
 const CustomerForm: React.FC = () => {
     const [formData, setFormData] = useState<FormData>({
         customer_name: '',
         address: '',
-        phone_number: 0,
+        phone_number: '',
     });
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -33,7 +33,7 @@ const CustomerForm: React.FC = () => {
             setFormData({
                 customer_name: '',
                 address: '',
-                phone_number: 0,
+                phone_number: '',
             });
         }
     };

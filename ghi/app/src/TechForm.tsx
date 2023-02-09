@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 
 type Technician = {
   name: string;
-  employee_number: number;
+  employee_number: string;
 }
 
 const TechForm: React.FC = () => {
     const [technician, setTechnician] = useState<Technician>({
         name: "",
-        employee_number: 0,
+        employee_number: "",
       });
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {

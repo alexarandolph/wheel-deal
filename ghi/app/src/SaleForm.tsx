@@ -51,7 +51,7 @@ const SaleForm = () => {
 
     if (response.ok) {
       const data = await response.json();
-      setAutomobiles(data.autos);
+      setAutomobiles(data.automobile);
     }
   };
 
@@ -122,7 +122,7 @@ const SaleForm = () => {
                         <div className="mb-3">
                             <select onChange={handleFormChange} value={formData.automobile} required name="automobile" className="form-select">
                                 <option value="">Choose an automobile</option>
-                                {automobiles.map(automobile => {
+                                {automobiles?.map(automobile => {
                                     return (
                                         <option key={automobile.id}>{ automobile.vin }</option>
                                     )

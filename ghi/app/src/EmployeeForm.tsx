@@ -2,13 +2,13 @@ import React, {useState} from 'react';
 
 type FormData = {
   employee_name: string;
-  employee_number: number;
+  employee_number: string;
 }
 
 function EmployeeForm() {
   const [formData, setFormData] = useState<FormData>({
     employee_name: '',
-    employee_number: 0,
+    employee_number: '',
   });
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -29,7 +29,7 @@ function EmployeeForm() {
     if (response.ok) {
       setFormData({
         employee_name: '',
-        employee_number: 0,
+        employee_number: '',
       });
     }
   }

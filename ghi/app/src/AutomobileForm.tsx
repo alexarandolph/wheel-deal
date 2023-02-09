@@ -4,7 +4,7 @@ type FormData = {
   color: string;
   year: string;
   vin: string;
-  model_id: number;
+  model_id: string;
 };
 
 type Model = {
@@ -19,7 +19,7 @@ const AutomobileForm: React.FC = () => {
     color: '',
     year: '',
     vin: '',
-    model_id: 0,
+    model_id: '',
   });
 
   const getData = async () => {
@@ -56,7 +56,7 @@ const AutomobileForm: React.FC = () => {
         color: '',
         year: '',
         vin: '',
-        model_id: 0,
+        model_id: '',
       });
     }
   };

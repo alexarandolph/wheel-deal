@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 type FormData = {
   name: string;
   picture_url: string;
-  manufacturer_id: number;
+  manufacturer_id: string;
 }
 
 type Manufacturer = {
@@ -16,7 +16,7 @@ const ModelForm: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({
     name: '',
     picture_url: '',
-    manufacturer_id: 0,
+    manufacturer_id: '',
   });
 
   const getData = async () => {
@@ -52,7 +52,7 @@ const ModelForm: React.FC = () => {
       setFormData({
         name: '',
         picture_url: '',
-        manufacturer_id: 0,
+        manufacturer_id: '',
       });
     }
   };
