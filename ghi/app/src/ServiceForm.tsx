@@ -1,62 +1,76 @@
+import { type } from '@testing-library/user-event/dist/type';
 import React, { useState, useEffect } from 'react';
 
-function ServiceForm() {
-  const [technicians, setTechnicians] = useState([]);
-    const [service, setService] = useState({
-        vin: "",
-        customer_name: "",
-        service_date: "",
-        service_time: "",
-        technician_list: [],
-        reason: ""
-      });
-
-    const getTechnicians = async () => {
-      const url = "http://localhost:8080/api/technicians/";
-      const response = await fetch(url);
-
-      if (response.ok) {
-        const data = await response.json();
-        setTechnicians(data.technicians);
-      }
-    };
-
-      useEffect(() => {
-        getTechnicians();
-      }, []);
-
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    const data = {
-        customer_name: service.customer_name,
-        vin: service.vin,
-        service_date: service.service_date,
-        service_time: service.service_time,
-        technician: service.technician,
-        reason: service.reason
-    }
-  try {
-    const response = await fetch("http://localhost:8080/api/services/", {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers:{"Content-Type": "application/json"},
-    });
-    if (!response.ok) {
-      throw new Error(response.statusText);
-    }
-    setService({...service})
-    window.location.reload()
-  } catch (error) {
-    console.error(error);
-  }
+type Service = {
+  vin: string;
+  customer_name: string;
+  service_date: string;
+  service_time: string;
+  technician: string;
+  reason: string;
 }
 
-  const handleInputChange = async (e) => {
+type Technician = {
+  id: number;
+  name: string;
+}
+
+const ServiceForm: React.FC = () => {
+  const [technicians, setTechnicians] = useState<Technician[]>([]);
+  const [service, setService] = useState<Service>({
+    vin: "",
+    customer_name: "",
+    service_date: "",
+    service_time: "",
+    technician: "",
+    reason: "",
+  });
+
+  const getTechnicians = async () => {
+    const url = "http://localhost:8080/api/technicians/";
+    const response = await fetch(url);
+
+    if (response.ok) {
+      const data = await response.json();
+      setTechnicians(data.technicians);
+    }
+  };
+
+  useEffect(() => {
+    getTechnicians();
+  }, []);
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const data = {
+      customer_name: service.customer_name,
+      vin: service.vin,
+      service_date: service.service_date,
+      service_time: service.service_time,
+      technician: service.technician,
+      reason: service.reason,
+    };
+    try {
+      const response = await fetch("http://localhost:8080/api/services/", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: { "Content-Type": "application/json" },
+      });
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
+      setService({ ...service });
+      window.location.reload();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const name = e.target.name;
     const value = e.target.value;
     setService({ ...service, [name]: value });
-  }
+  };
 
   return (
     <div className="my-5">

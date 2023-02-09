@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 
-function ManufacturerForm() {
-    const [manufacturer, setManufacturer] = useState({
-        name: "",
-      });
+type Manufacturer = {
+  name: string;
+}
 
-  const handleSubmit = async (event) => {
+const ManufacturerForm: React.FC = () => {
+    const [manufacturer, setManufacturer] = useState<Manufacturer>({
+        name: "",
+    });
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = {
         name: manufacturer.name,
@@ -26,7 +30,7 @@ function ManufacturerForm() {
       console.error(error);
     }
     }
-    const handleInputChange = async (e) => {
+    const handleInputChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
       const name = e.target.name;
       const value = e.target.value;
       setManufacturer({ ...manufacturer, [name]: value });
@@ -40,7 +44,7 @@ function ManufacturerForm() {
           <div className="card shadow">
             <div className="card-body">
 
-              <form className='form' onSubmit={handleSubmit} id="create-attendee-form">
+              <form className='form' onSubmit={handleSubmit} id="create-manufacturer-form">
                 <h1 className="card-title"> Create a manufacturer</h1>
                 <p className="mb-3">
                 </p>

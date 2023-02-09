@@ -1,56 +1,67 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 
-function ModelForm() {
-    const [manufacturers, setManufacturers] = useState([])
-    const [formData, setFormData] = useState({
+type FormData = {
+  name: string;
+  picture_url: string;
+  manufacturer_id: number;
+}
+
+type Manufacturer = {
+  id: number;
+  name: string;
+}
+
+const ModelForm: React.FC = () => {
+  const [manufacturers, setManufacturers] = useState<Manufacturer[]>([]);
+  const [formData, setFormData] = useState<FormData>({
+    name: '',
+    picture_url: '',
+    manufacturer_id: 0,
+  });
+
+  const getData = async () => {
+    const url = 'http://localhost:8100/api/manufacturers/';
+    const response = await fetch(url);
+
+    if (response.ok) {
+      const data = await response.json();
+      setManufacturers(data.manufacturers);
+    }
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const locationUrl = 'http://localhost:8100/api/models/';
+
+    const fetchConfig = {
+      method: 'post',
+      body: JSON.stringify(formData),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+
+    const response = await fetch(locationUrl, fetchConfig);
+
+    if (response.ok) {
+      setFormData({
         name: '',
         picture_url: '',
-        manufacturer_id: '',
-    })
-
-    const getData = async () => {
-        const url = 'http://localhost:8100/api/manufacturers/';
-        const response = await fetch(url);
-
-        if (response.ok) {
-            const data = await response.json();
-            setManufacturers(data.manufacturers)
-        }
+        manufacturer_id: 0,
+      });
     }
+  };
 
-    useEffect(() => {
-        getData();
-    }, []);
-
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-
-        const locationUrl = 'http://localhost:8100/api/models/';
-
-        const fetchConfig = {
-            method: "post",
-            body: JSON.stringify(formData),
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        };
-
-        const response = await fetch(locationUrl, fetchConfig);
-
-        if (response.ok) {
-            setFormData({
-                name: '',
-                picture_url: '',
-                manufacturer_id: '',
-            });
-        }
-    }
-
-    const handleFormChange = (e) => {
-        const value = e.target.value;
-        const inputName = e.target.name;
-        setFormData({...formData, [inputName]: value});
-    }
+  const handleFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const value = e.target.value;
+    const inputName = e.target.name;
+    setFormData({ ...formData, [inputName]: value });
+  };
 
     return (
         <div className="row">

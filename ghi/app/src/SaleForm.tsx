@@ -1,94 +1,117 @@
+import { type } from 'os';
 import React, {useState, useEffect} from 'react';
 
-function SaleForm() {
-    const [sales, setSales] = useState([])
-    const [automobiles, setAutomobiles] = useState([])
-    const [employees, setEmployees] = useState([])
-    const [customers, setCustomers] = useState([])
-    const [formData, setFormData] = useState({
+type FormData = {
+  automobile: string;
+  employee: string;
+  customer: string;
+  sale_price: string;
+}
+
+type Automobile = {
+  id: number;
+  vin: string;
+}
+
+type Employee = {
+  id: number;
+  employee_name: string;
+}
+
+type Customer = {
+  id: number;
+  customer_name: string;
+}
+
+const SaleForm = () => {
+  const [sales, setSales] = useState<[]>([]);
+  const [automobiles, setAutomobiles] = useState<Automobile[]>([]);
+  const [employees, setEmployees] = useState<Employee[]>([]);
+  const [customers, setCustomers] = useState<Customer[]>([]);
+  const [formData, setFormData] = useState<FormData>({
+    automobile: '',
+    employee: '',
+    customer: '',
+    sale_price: '',
+  });
+
+  const getData = async () => {
+    const url = 'http://localhost:8090/api/sales/';
+    const response = await fetch(url);
+
+    if (response.ok) {
+      const data = await response.json();
+      setSales(data.sales);
+    }
+  };
+
+  const getAutomobileData = async () => {
+    const url = 'http://localhost:8100/api/automobiles/';
+    const response = await fetch(url);
+
+    if (response.ok) {
+      const data = await response.json();
+      setAutomobiles(data.autos);
+    }
+  };
+
+  const getEmployeeData = async () => {
+    const url = 'http://localhost:8090/api/employees/';
+    const response = await fetch(url);
+
+    if (response.ok) {
+      const data = await response.json();
+      setEmployees(data.employees);
+    }
+  };
+
+  const getCustomerData = async () => {
+    const url = 'http://localhost:8090/api/customers/';
+    const response = await fetch(url);
+
+    if (response.ok) {
+      const data = await response.json();
+      setCustomers(data.customers);
+    }
+  };
+
+  useEffect(() => {
+    getData();
+    getAutomobileData();
+    getEmployeeData();
+    getCustomerData();
+  }, []);
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const locationUrl = 'http://localhost:8090/api/sales/';
+
+    const fetchConfig = {
+      method: 'post',
+      body: JSON.stringify(formData),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+
+    const response = await fetch(locationUrl, fetchConfig);
+
+    if (response.ok) {
+      setFormData({
         automobile: '',
         employee: '',
         customer: '',
         sale_price: '',
-    })
-
-    const getData = async () => {
-        const url = 'http://localhost:8090/api/sales/';
-        const response = await fetch(url);
-
-        if (response.ok) {
-            const data = await response.json();
-            setSales(data.sales)
-        }
+      });
     }
+  };
 
-    const getAutomobileData = async () => {
-        const url = 'http://localhost:8100/api/automobiles/';
-        const response = await fetch(url);
-
-        if (response.ok) {
-            const data = await response.json();
-            setAutomobiles(data.autos)
-        }
-    }
-
-    const getEmployeeData = async () => {
-        const url = 'http://localhost:8090/api/employees/';
-        const response = await fetch(url);
-
-        if (response.ok) {
-            const data = await response.json();
-            setEmployees(data.employees)
-        }
-    }
-
-    const getCustomerData = async () => {
-        const url = 'http://localhost:8090/api/customers/';
-        const response = await fetch(url);
-
-        if (response.ok) {
-            const data = await response.json();
-            setCustomers(data.customers)
-        }
-    }
-
-    useEffect(() => {
-        getData();
-        getAutomobileData();
-        getEmployeeData();
-        getCustomerData();
-    }, []);
-
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-
-        const locationUrl = 'http://localhost:8090/api/sales/';
-
-        const fetchConfig = {
-            method: "post",
-            body: JSON.stringify(formData),
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        };
-
-        const response = await fetch(locationUrl, fetchConfig);
-
-        if (response.ok) {
-            setFormData({
-                automobile: '',
-                employee: '',
-                customer: '',
-                sale_price: '',
-            });
-        }
-    }
-
-    const handleFormChange = (e) => {
-        const value = e.target.value;
-        const inputName = e.target.name;
-        setFormData({...formData, [inputName]: value});
-    }
+  const handleFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const value = e.target.value;
+    const inputName = e.target.name;
+    setFormData({ ...formData, [inputName]: value });
+  };
 
     return (
         <div className="row">

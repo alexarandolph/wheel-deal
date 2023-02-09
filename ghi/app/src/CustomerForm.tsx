@@ -1,19 +1,26 @@
+import { type } from 'os';
 import React, {useState} from 'react';
 
-function CustomerForm() {
-    const [formData, setFormData] = useState({
+type FormData = {
+  customer_name: string;
+  address: string;
+  phone_number: number;
+}
+
+const CustomerForm: React.FC = () => {
+    const [formData, setFormData] = useState<FormData>({
         customer_name: '',
         address: '',
-        phone_number: '',
-    })
+        phone_number: 0,
+    });
 
-    const handleSubmit = async (event) => {
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
         const locationUrl = 'http://localhost:8090/api/customers/';
 
         const fetchConfig = {
-            method: "post",
+            method: 'post',
             body: JSON.stringify(formData),
             headers: {
                 'Content-Type': 'application/json',
@@ -26,16 +33,16 @@ function CustomerForm() {
             setFormData({
                 customer_name: '',
                 address: '',
-                phone_number: '',
+                phone_number: 0,
             });
         }
-    }
+    };
 
-    const handleFormChange = (e) => {
+    const handleFormChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
         const inputName = e.target.name;
         setFormData({...formData, [inputName]: value});
-    }
+    };
 
     return (
         <div className="row">
@@ -60,7 +67,7 @@ function CustomerForm() {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default CustomerForm;

@@ -13,7 +13,7 @@ import Nav from './Nav';
 import TechForm from './TechForm';
 import ServiceForm from './ServiceForm';
 import ServiceList from './ServiceList';
-import ServiceHistory from './ServiceHistory.js';
+import ServiceHistory from './ServiceHistory';
 import ManufacturersList from './ManufacturersList';
 import ManufacturerForm from './ManufacturerForm';
 import VehicleList from './VehicleList';

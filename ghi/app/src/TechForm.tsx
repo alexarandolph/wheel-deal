@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
 
-function TechForm() {
-    const [technician, setTechnician] = useState({
+type Technician = {
+  name: string;
+  employee_number: number;
+}
+
+const TechForm: React.FC = () => {
+    const [technician, setTechnician] = useState<Technician>({
         name: "",
-        employee_number: "",
+        employee_number: 0,
       });
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = {
         name: technician.name,
@@ -28,7 +33,7 @@ function TechForm() {
       console.error(error);
     }
     }
-    const handleInputChange = async (e) => {
+    const handleInputChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
       const name = e.target.name;
       const value = e.target.value;
       setTechnician({ ...technician, [name]: value });
