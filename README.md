@@ -8,6 +8,9 @@ Team:
 ## Overview
 This application is perfect for dealerships seeking to centralize and streamline their information. With the Sales microservice, you can add sales representatives and customers, allowing you to easily track the vehicles each rep has sold and the vehicles each customer has purchased. The Services microservice allows you to add technicians and schedule appointments for vehicle service. You can view, complete, or cancel appointments, and the microservice also flags VIP customers based on their vehicle identification number (VIN). The Inventory microservice enables you to add manufacturers, create vehicle models, and view a comprehensive list of the dealership's inventory.
 
+<br><br/>
+Tech used: Python, TypeScript, Django, React, RabbitMQ, REST APIs
+
 ## Demo
 <img src="./wheel-deal.gif" alt="Demo GIF" width="600" height="315">
 
